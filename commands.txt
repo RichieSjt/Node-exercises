@@ -1,0 +1,25 @@
+Node packages
+local
+npm install validator
+npm install chalk
+
+global
+npm install -g nodemon
+
+Node package manager
+
+npm install <package name>
+npm uninstall <package name>
+npm cache clean --force
+
+//Install the latest version of npm
+npm install -g npm@latest --force
+
+Node version manager
+
+Update node: https://stackoverflow.com/questions/8191459/how-do-i-update-node-js
+
+nvm list available
+nvm install <version>
+nvm install latest
+nvm use <version>
