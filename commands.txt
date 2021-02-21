@@ -2,6 +2,7 @@ Node packages
 local
 npm install validator
 npm install chalk
+npm install yargs
 
 global
 npm install -g nodemon
