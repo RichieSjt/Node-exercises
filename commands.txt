@@ -24,3 +24,10 @@ nvm list available
 nvm install <version>
 nvm install latest
 nvm use <version>
+
+Node commands
+nodemon app.js
+
+// Debugging
+node inspect app.js
+chrome://inspect/#devices
