@@ -1,4 +1,8 @@
 # Node gitignore
+# API Keys
+
+api_keys.js
+
 # Logs
 logs
 *.log
