@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "postman-request": "^2.88.1-postman.28"
+  },
+  "name": "weather-app",
+  "version": "1.0.0",
+  "main": "api_keys.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
