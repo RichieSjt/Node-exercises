@@ -2,17 +2,18 @@ const api_keys = require('./api_keys')
 const request = require('postman-request')
 
 const forecast = (latitude, longitude, callback) =>{
-    const wheather_stack_url = 'http://api.weatherstack.com/current?access_key=' + api_keys.WEATHER_API_KEY + '&query=' + latitude + ',' + longitude
+    const url = 'http://api.weatherstack.com/current?access_key=' + api_keys.WEATHER_API_KEY + '&query=' + latitude + ',' + longitude
 
-    request({url: wheather_stack_url, json: true}, (error, response) =>{
+    // Destructuring response into body
+    request({url, json: true}, (error, {body} = {}) =>{
         if(error){
             callback('Unable to connect to weather stack service.', undefined)
-        }else if (response.body.error){
-            callback(response.body.error.info, undefined)
+        }else if (body.error){
+            callback(body.error.info, undefined)
         }else{
-            const temperature = response.body.current.temperature
-            const feels_like_temperature = response.body.current.feelslike
-            const weather_descriptions = response.body.current.weather_descriptions
+            const temperature = body.current.temperature
+            const feels_like_temperature = body.current.feelslike
+            const weather_descriptions = body.current.weather_descriptions
 
             // callback(undefined, {
             //     temperature: temperature,
