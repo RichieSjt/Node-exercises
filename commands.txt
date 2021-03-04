@@ -4,9 +4,23 @@ npm install validator
 npm install chalk
 npm install yargs
 npm install postman-request
+npm install handlebars
+npm install hbs
+npm install boostrap
 
 global
 npm install -g nodemon
+npm install -g sass
+
+// Import bootstrap in sass
+@import '../../node_modules/bootstrap/scss/bootstrap.scss';
+// Watching sass manually
+sass --watch scss/styles.scss css/styles.css
+// Compiling sass once
+sass scss/styles.scss css/styles.css
+
+"start": "nodemon --ext js,mjs,json,scss,hbs --exec \"npm run compile-sass\"",
+"compile-sass": "sass --style=compressed --update public/scss/styles.scss public/css/styles.css && node src/app.js",
 
 Node package manager
 
@@ -29,6 +43,9 @@ nvm use <version>
 Node commands
 npm init
 nodemon app.js
+nodemon --exec npm start
+// Registering extensions for nodemon to watch
+nodemon src/app.js -e js,hbs
 // Debugging
 node inspect app.js
 chrome://inspect/#devices
