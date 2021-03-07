@@ -14,13 +14,15 @@ const forecast = (latitude, longitude, callback) =>{
             const temperature = body.current.temperature
             const feels_like_temperature = body.current.feelslike
             const weather_descriptions = body.current.weather_descriptions
+            const humidity = body.current.humidity
+            const wind_speed = body.current.wind_speed
 
             // callback(undefined, {
             //     temperature: temperature,
             //     feels_like_temperature: feels_like_temperature,
             //     weather_descriptions: weather_descriptions
             // })
-            callback(undefined, weather_descriptions[0] + '. It is currently ' + temperature + '° degrees out and it feels like ' + feels_like_temperature + '° degrees out.')
+            callback(undefined, weather_descriptions[0] + '. It is currently ' + temperature + '° degrees out and it feels like ' + feels_like_temperature + '° degrees out. The wind speed is ' + wind_speed + ' km/h and the humidity is ' + humidity + '%.')
         }
     })
 }

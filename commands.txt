@@ -12,6 +12,9 @@ global
 npm install -g nodemon
 npm install -g sass
 
+dev dependencies
+npm install nodemon --save-dev
+
 // Import bootstrap in sass
 @import '../../node_modules/bootstrap/scss/bootstrap.scss';
 // Watching sass manually
@@ -49,3 +52,21 @@ nodemon src/app.js -e js,hbs
 // Debugging
 node inspect app.js
 chrome://inspect/#devices
+
+git ssh keys (gitbash)
+ls -a -l ~/.ssh
+ssh-keygen -t rsa -b 4096 -C "email@example.com"
+
+eval $(ssh-agent -s)
+ssh-add ~/.ssh/id_rsa
+
+// Remember to add key in github
+
+heroku ssh key setup
+heroku keys:add
+heroku create <unique-name>
+
+git remote
+
+git push origin master
+git push heroku main
