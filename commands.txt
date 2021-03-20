@@ -1,19 +1,22 @@
 Node packages
 local
-npm install validator
-npm install chalk
-npm install yargs
-npm install postman-request
-npm install handlebars
-npm install hbs
-npm install boostrap
+npm i validator
+npm i chalk
+npm i yargs
+npm i postman-request
+npm i express
+npm i handlebars
+npm i hbs
+npm i boostrap
+npm i mongoose
+npm i validator
 
 global
-npm install -g nodemon
-npm install -g sass
+npm i -g nodemon
+npm i -g sass
 
 dev dependencies
-npm install nodemon --save-dev
+npm i nodemon --save-dev
 
 // Import bootstrap in sass
 @import '../../node_modules/bootstrap/scss/bootstrap.scss';
@@ -53,7 +56,7 @@ nodemon src/app.js -e js,hbs
 node inspect app.js
 chrome://inspect/#devices
 
-git ssh keys (gitbash)
+// git ssh keys (gitbash) only first time
 ls -a -l ~/.ssh
 ssh-keygen -t rsa -b 4096 -C "email@example.com"
 
@@ -62,11 +65,15 @@ ssh-add ~/.ssh/id_rsa
 
 // Remember to add key in github
 
-heroku ssh key setup
+// Heroku ssh key setup only first time
 heroku keys:add
-heroku create <unique-name>
 
+// Heroku create project
+heroku create <unique-name>
+git push heroku main
+
+// See all branches
 git remote
 
-git push origin master
-git push heroku main
+// Push to main branch in git
+git push origin main
