@@ -20,9 +20,38 @@ router.post('/tasks', auth, async (req, res) => {
     }
 })
 
+// GET /tasks?completed=true
+// GET /tasks?limit=10&skip=0 // Pagination
+// GET /tasks?sortby=createdAt_asc // Sorting
 router.get('/tasks', auth, async (req, res) => {
+    const match = {}
+    const sort = {}
+
+    if (req.query.completed) {
+        // Casting to boolean???? rasjfbnajnfkva
+        match.completed = req.query.completed === 'true'
+    }
+
+    if (req.query.sortBy) {
+        // Ascending sort 1, descending sort -1
+        // FieldToSortBy: SortType
+        const parts = req.query.sortBy.split('_')
+        const fieldToSortBy = parts[0]
+        const sortType = parts[1] === 'desc' ? -1 : 1
+
+        sort[fieldToSortBy] = sortType
+    }
+
     try {
-        await req.user.populate('myTasks').execPopulate()
+        await req.user.populate({
+            path: 'myTasks',
+            match,
+            options: {
+                limit: parseInt(req.query.limit),
+                skip: parseInt(req.query.skip),
+                sort
+            }
+        }).execPopulate()
         res.send(req.user.myTasks)
     } catch (e) {
         res.status(500).send()

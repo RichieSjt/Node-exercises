@@ -48,6 +48,9 @@ const userSchema = new mongoose.Schema({
             required: true
         }
     }]
+}, {
+    // Schema options
+    timestamps: true
 })
 
 // Virtual property, is a relationship between two entities
