@@ -10,6 +10,8 @@ npm i hbs
 npm i boostrap
 npm i mongoose
 npm i validator
+npm i bcryptjs
+npm i jsonwebtoken
 
 global
 npm i -g nodemon
