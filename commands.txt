@@ -12,6 +12,8 @@ npm i mongoose
 npm i validator
 npm i bcryptjs
 npm i jsonwebtoken
+npm i multer
+npm i sharp
 
 global
 npm i -g nodemon

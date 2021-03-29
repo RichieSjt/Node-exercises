@@ -1,4 +1,6 @@
 const express = require('express')
+const multer = require('multer')
+const sharp = require('sharp')
 const User = require('../models/user')
 const auth = require('../middleware/auth')
 
@@ -101,6 +103,73 @@ router.delete('/users/me', auth, async (req, res) => {
         res.send(req.user)
     } catch (e) {
         res.status(500).send()
+    }
+})
+
+// Setting up file upload for multer
+const upload = multer({
+    // In case we want to store data in a folder, however deploy platforms wipe folders when deploying so it is not ideal
+    // dest: 'avatar',
+    limits: {
+        // One million bytes = one mb
+        fileSize: 1000000
+    },
+    // cb = callback
+    fileFilter(req, file, cb) {
+        // Using regex to exclude any file that is not an image
+        if (!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
+            return cb(new Error('File must be an image with extension jpg, jpeg or png.'))
+        }
+
+        // Things went well, we add true to accept the file, false to reject it
+        cb(undefined, true)
+    }
+})
+
+router.post('/users/me/avatar', auth, upload.single('avatar'), async (req, res) => {
+    // Multer binary data from file: req.file.buffer
+    const bufferImgFromSharp = await sharp(req.file.buffer).resize({ width: 250, height: 250 }).png().toBuffer()
+    req.user.avatar = bufferImgFromSharp
+    
+    await req.user.save()
+    res.send()
+}, (error, req, res, next) => {
+    // If callback throws an error we send a json response with the error message
+    res.status(400).send({ error: error.message })
+})
+
+// <img src = "data:img/jpg;base64,binaryData"> Rendering image in html
+
+router.delete('/users/me/avatar', auth, async (req, res) => {
+    
+    try {
+        if (!req.user.avatar) {
+            throw new Error()
+        }
+
+        req.user.avatar = undefined
+        await req.user.save()
+        res.send()
+    } catch (e) {
+        res.status(500).send()
+    }
+})
+
+router.get('/users/:id/avatar', async (req, res) => {
+    try {
+        const _id = req.params.id
+        const user = await User.findById(_id)
+
+        if (!user || !user.avatar) {
+            throw new Error()
+        }
+
+        // Setting a response header (nameOfResponseHeader, valueOfResponseHeader)
+        res.set('Content-type', 'image/png')
+        res.send(user.avatar)
+
+    } catch (e) {
+        res.status(404).send()
     }
 })
 
