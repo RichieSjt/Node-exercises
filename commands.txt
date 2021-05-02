@@ -21,6 +21,7 @@ npm i -g sass
 
 dev dependencies
 npm i nodemon --save-dev
+npm i env-cmd --save-dev
 
 // Import bootstrap in sass
 @import '../../node_modules/bootstrap/scss/bootstrap.scss';
@@ -75,6 +76,11 @@ heroku keys:add
 // Heroku create project
 heroku create <unique-name>
 git push heroku main
+
+// Heroku environment variables
+heroku config
+heroku config:set key=value
+heroku config:unset key
 
 // See all branches
 git remote
