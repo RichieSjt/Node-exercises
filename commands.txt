@@ -22,6 +22,7 @@ npm i -g sass
 dev dependencies
 npm i nodemon --save-dev
 npm i env-cmd --save-dev
+npm i jest --save-dev
 
 // Import bootstrap in sass
 @import '../../node_modules/bootstrap/scss/bootstrap.scss';
