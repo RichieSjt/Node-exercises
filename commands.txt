@@ -23,6 +23,8 @@ dev dependencies
 npm i nodemon --save-dev
 npm i env-cmd --save-dev
 npm i jest --save-dev
+npm i supertest --save-dev
+npm i cypress --save-dev
 
 // Import bootstrap in sass
 @import '../../node_modules/bootstrap/scss/bootstrap.scss';
